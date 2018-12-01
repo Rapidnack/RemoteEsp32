@@ -1,0 +1,25 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+RemoteEsp32	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+attach	KEYWORD2
+detach	KEYWORD2
+processInput	KEYWORD2
+processInterrupt	KEYWORD2
+bytesToInt	KEYWORD2
+IntToBytes	KEYWORD2
+IntsToBytes	KEYWORD2
+printBytes	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
