@@ -6,10 +6,8 @@
 AD9833 ad9833(5);
 
 /* Set these to your desired credentials. */
-//const char *ssid = "your ssid";
-//const char *password = "your password";
-const char *ssid     = "106F3F28087C_G";
-const char *password = "xr84vyms434wt";
+const char *ssid = "your ssid";
+const char *password = "your password";
 
 WiFiServer server(8888);
 WiFiClient client1;
