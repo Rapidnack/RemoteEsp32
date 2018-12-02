@@ -151,7 +151,6 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
 
     //#define OLEDDISPLAY_DRAW_STRING (OLEDDISPLAY_BASE+17)
     case OLEDDISPLAY_DRAW_STRING: {
-      buffer[extsBytes] = 0;
       String p3 = String((char*)(buffer + 16));
       display.drawString(p1, p2, p3);
     }

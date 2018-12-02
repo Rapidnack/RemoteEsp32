@@ -203,20 +203,17 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
       }
       break;
     case OLEDDISPLAY_DRAW_STRING: {
-        buffer[extsBytes] = 0;
         String p3 = String((char*)(buffer + 16));
         display.drawString(p1, p2, p3);
       }
       break;
     case OLEDDISPLAY_DRAW_STRING_MAX_WIDTH: {
-        buffer[extsBytes] = 0;
         int p3 = RemoteEsp32.bytesToInt(buffer + 16);
         String p4 = String((char*)(buffer + 20));
         display.drawStringMaxWidth(p1, p2, p3, p4);
       }
       break;
     case OLEDDISPLAY_GET_STRING_WIDTH: {
-        buffer[extsBytes] = 0;
         String p3 = String((char*)(buffer + 16));
         RemoteEsp32.intToBytes((int)display.getStringWidth(p3), buffer + 8);
       }
@@ -254,19 +251,16 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
       break;
     case OLEDDISPLAY_WRITE_CHAR: display.write(p1); break;
     case OLEDDISPLAY_WRITE_STRING: {
-        buffer[extsBytes] = 0;
         char *p3 = (char*)(buffer + 16);
         display.drawString(p1, p2, p3);
       }
       break;
     case OLEDDISPLAY_PRINT: {
-        buffer[extsBytes] = 0;
         String p3 = String((char*)(buffer + 16));
         display.print(p3);
       }
       break;
     case OLEDDISPLAY_PRINTLN: {
-        buffer[extsBytes] = 0;
         String p3 = String((char*)(buffer + 16));
         display.println(p3);
       }

@@ -54,6 +54,7 @@ void RemoteEsp32Class::processInput(Stream *stream)
 		//Serial.println(extsBytes);
 		if (extsBytes > 0) {
 			stream->readBytes(buffer + 16, extsBytes);
+			buffer[16 + extsBytes] = 0;
 		}
 		intToBytes(0, buffer + 4);
 		intToBytes(0, buffer + 8);
@@ -382,7 +383,6 @@ void RemoteEsp32Class::processCommand(byte* buffer, int command, int p1, int p2,
 			Wire.flush();
 		break;
 	case I2C_WRITE_TEXT: {
-			buffer[16 + extsBytes] = 0;
 			char *p3 = (char*)(buffer + 16);
 			if (p1 == 1)
 				Wire1.write(p3);
