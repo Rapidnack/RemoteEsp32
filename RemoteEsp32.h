@@ -5,8 +5,8 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#define CMD_BUF_LEN 10240
-#define ADC_MAX_WIDTH 6
+#define BUFFER_LEN 10240
+//#define ADC_MAX_WIDTH 6
 
 #define CMD_NOIB 99
 
@@ -175,8 +175,8 @@ class RemoteEsp32Class
 
 		Stream* notifyStream;
 		byte* buffer;
-		int adcPins[ADC_MAX_WIDTH] = { 36, 39, 32, 33, 34, 35 };
-		int adcBuf[ADC_MAX_WIDTH * 2];
+		//int adcPins[ADC_MAX_WIDTH] = { 36, 39, 32, 33, 34, 35 };
+		//int adcBuf[ADC_MAX_WIDTH * 2];
 		virtual void processCommand(byte* buffer, int command, int p1, int p2, int extsBytes);
 };
 

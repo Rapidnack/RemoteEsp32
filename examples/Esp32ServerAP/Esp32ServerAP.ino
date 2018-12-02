@@ -2,6 +2,8 @@
 #include "RemoteEsp32.h"
 #include "SSD1306Wire.h"
 
+SSD1306Wire display(0x3c, 21, 22);
+
 /* Set these to your desired credentials. */
 const char *ssid = "ESPap";
 const char *password = "thereisnospoon";
@@ -9,8 +11,6 @@ const char *password = "thereisnospoon";
 WiFiServer server(8888);
 WiFiClient client1;
 WiFiClient client2;
-
-SSD1306Wire display(0x3c, 21, 22);
 
 void setup() {
   Serial.begin(57600);
