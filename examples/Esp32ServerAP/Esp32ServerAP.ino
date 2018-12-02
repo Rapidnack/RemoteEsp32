@@ -12,6 +12,8 @@ WiFiServer server(8888);
 WiFiClient client1;
 WiFiClient client2;
 
+void callback(byte* buffer, int command, int p1, int p2, int extsBytes);
+
 void setup() {
   Serial.begin(57600);
   
@@ -33,6 +35,8 @@ void setup() {
   display.drawString(0, 0, myIP.toString());
   display.drawString(0, 16, "ESP32 (AP)");
   display.display();
+
+  RemoteEsp32.attach(callback);
 }
 
 void loop() {
@@ -49,3 +53,14 @@ void loop() {
   RemoteEsp32.processInterrupt();
 }
 
+void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
+  //RemoteEsp32.printBytes(buffer, 16 + extsBytes);
+  switch (command) {
+
+    default:
+      RemoteEsp32.intToBytes(ERR_UNKNOWN_COMMAND, buffer + 4);
+      break;
+
+  }
+  //RemoteEsp32.printBytes(buffer, 16 + extsBytes);
+}
