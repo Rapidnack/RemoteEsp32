@@ -105,9 +105,33 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
     //#define ANALOG_FAST_READ 10001
     case ANALOG_FAST_READ: {
       int adcBuf[p2 * 2];
-      for (int n = 0; n < p2; n++) {
-        adcBuf[n * 2] = analogRead(p1); 
-        adcBuf[n * 2 + 1] = micros();
+      int pos = 0;
+      int n = 0;
+      for (int i = 0; i < (p2 * 10) / 100; i++) { // 10% pre trigger
+        adcBuf[pos * 2] = analogRead(p1); 
+        adcBuf[pos * 2 + 1] = micros();
+        pos = (pos < p2 - 1) ? pos + 1 : 0;
+      }
+      while (n < p2 * 50) {
+        int val = analogRead(p1);
+        adcBuf[pos * 2] = val; 
+        adcBuf[pos * 2 + 1] = micros();
+        pos = (pos < p2 - 1) ? pos + 1 : 0;
+        n++;
+        if (val < 0x800) break;        
+      }
+      while (n < p2 * 50) {
+        int val = analogRead(p1);
+        adcBuf[pos * 2] = val; 
+        adcBuf[pos * 2 + 1] = micros();
+        pos = (pos < p2 - 1) ? pos + 1 : 0;
+        n++;
+        if (val >= 0x800) break;        
+      }
+      for (int i = 0; i < (p2 * 90) / 100; i++) { // 90% post trigger
+        adcBuf[pos * 2] = analogRead(p1); 
+        adcBuf[pos * 2 + 1] = micros();
+        pos = (pos < p2 - 1) ? pos + 1 : 0;
       }
       extsBytes = (p2 * 2) * 4;
       RemoteEsp32.intToBytes(extsBytes, buffer + 12);
