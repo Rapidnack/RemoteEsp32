@@ -622,6 +622,10 @@ void RemoteEsp32Class::processCommand(byte* buffer, int command, int p1, int p2,
 		
 	// esp32-hal-uart.h: 1500~
 
+	default:
+		intToBytes(ERR_UNKNOWN_COMMAND, buffer + 4);
+		break;
+
 	}
 }
 

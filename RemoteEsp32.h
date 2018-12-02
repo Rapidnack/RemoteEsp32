@@ -10,6 +10,8 @@
 
 #define CMD_NOIB 99
 
+#define ERR_UNKNOWN_COMMAND -88
+
 // esp32-hal.h: 100~
 #define TEMPERATURE_READ 100
 #define MICROS 101
