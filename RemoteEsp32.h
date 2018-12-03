@@ -8,6 +8,7 @@
 #define BUFFER_LEN 10240
 //#define ADC_MAX_WIDTH 6
 
+#define CMD_NC 21
 #define CMD_NOIB 99
 
 #define ERR_UNKNOWN_COMMAND -88

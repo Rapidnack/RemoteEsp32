@@ -60,7 +60,9 @@ void RemoteEsp32Class::processInput(Stream *stream)
 		intToBytes(0, buffer + 8);
 		intToBytes(0, buffer + 12);
 
-		if (command == CMD_NOIB) {
+		if (command == CMD_NC) {
+			// nothing to do	
+		} else if (command == CMD_NOIB) {
 			for (int i = 0; i < 40; i++) {
 				interruptList[i].attach = 0;
 				interruptList[i].pin = i;
