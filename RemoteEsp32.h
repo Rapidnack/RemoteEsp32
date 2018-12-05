@@ -5,8 +5,7 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#define BUFFER_LEN 10240
-//#define ADC_MAX_WIDTH 6
+#define COMMAND_BUFFER_SIZE (40*1024)
 
 #define CMD_NC 21
 #define CMD_NOIB 99
@@ -177,9 +176,7 @@ class RemoteEsp32Class
 		static void IRAM_ATTR touchIsr27();
 
 		Stream* notifyStream;
-		byte* buffer;
-		//int adcPins[ADC_MAX_WIDTH] = { 36, 39, 32, 33, 34, 35 };
-		//int adcBuf[ADC_MAX_WIDTH * 2];
+		byte buffer[COMMAND_BUFFER_SIZE];
 		virtual void processCommand(byte* buffer, int command, int p1, int p2, int extsBytes);
 };
 

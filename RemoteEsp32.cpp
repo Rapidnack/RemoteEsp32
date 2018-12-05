@@ -11,12 +11,14 @@ Interrupt RemoteEsp32Class::touchInterruptList[40];
 RemoteEsp32Class::RemoteEsp32Class()
 {
 	notifyStream = NULL;
-	buffer = (byte*)malloc(BUFFER_LEN);
+	//buffer = (byte*)malloc(COMMAND_BUFFER_SIZE);
+	//buffer = new byte[COMMAND_BUFFER_SIZE];
 }
 
 RemoteEsp32Class::~RemoteEsp32Class()
 {
-	free(buffer);
+	//free(buffer);
+	//delete [] buffer;
 }
 
 void RemoteEsp32Class::attach(callbackFunction userFunction)
@@ -40,7 +42,7 @@ void RemoteEsp32Class::processInput(Stream *stream)
 		stream->readBytes(buffer, 16);
 		//printBytes(buffer, 16);
 
-		int command = bytesToInt(buffer);
+		int command = bytesToInt(buffer + 0);
 		int p1 = bytesToInt(buffer + 4);
 		int p2 = bytesToInt(buffer + 8);
 		int extsBytes = bytesToInt(buffer + 12);
@@ -229,7 +231,7 @@ void RemoteEsp32Class::processCommand(byte* buffer, int command, int p1, int p2,
 				s = String(Wire.getErrorText(p2));
 			extsBytes = s.length();
 			intToBytes(extsBytes, buffer + 12);
-			s.toCharArray((char*)(buffer + 16), BUFFER_LEN - 16);
+			s.toCharArray((char*)(buffer + 16), COMMAND_BUFFER_SIZE - 16);
 		}
 		break;
 	case I2C_WRITE_TRANSMISSION: {
