@@ -23,7 +23,6 @@ ArduinoライブラリRemoteEsp32は、別プロジェクト[Esp32IfTest](https:
 # Status
 
 [Arduino core for the ESP32](https://github.com/espressif/arduino-esp32)の関数の内、下記をC#から実行できます。
-
 - double temperatureRead()
 - uint micros()
 - uint millis()
@@ -71,7 +70,6 @@ ArduinoライブラリRemoteEsp32は、別プロジェクト[Esp32IfTest](https:
 - void touchAttachInterrupt(int pin, Action<int, UInt32> f, int threshold)
 
 #### I2C
-
 - void begin(int sda = -1, int scl = -1, uint frequency = 0)
 - void setClock(uint frequency)
 - uint getClock(uint frequency)
