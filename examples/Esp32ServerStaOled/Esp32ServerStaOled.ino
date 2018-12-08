@@ -67,7 +67,7 @@ void loop() {
 // void setColor(OLEDDISPLAY_COLOR color);
 #define OLEDDISPLAY_SET_COLOR (OLEDDISPLAY_BASE+3)
 // OLEDDISPLAY_COLOR getColor();
-#define OLEDDISPLAY_COLOR (OLEDDISPLAY_BASE+4)
+#define OLEDDISPLAY_GET_COLOR (OLEDDISPLAY_BASE+4)
 // void setPixel(int16_t x, int16_t y);
 #define OLEDDISPLAY_SET_PIXEL (OLEDDISPLAY_BASE+5)
 // void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1);
@@ -148,8 +148,8 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
     case OLEDDISPLAY_INIT: display.init(); break;
     case OLEDDISPLAY_END: display.end(); break;
     case OLEDDISPLAY_RESET_DISPLAY: display.resetDisplay(); break;
-    //case DISPLAY_SET_COLOR: display.setColor(p1); break;
-    //case DISPLAY_COLOR: display.getColor(); break;
+    case OLEDDISPLAY_SET_COLOR: display.setColor((OLEDDISPLAY_COLOR)p1); break;
+    case OLEDDISPLAY_GET_COLOR: (int)display.getColor(); break;
     case OLEDDISPLAY_SET_PIXEL: display.setPixel(p1, p2); break;
     case OLEDDISPLAY_DRAW_LINE: {
         int p3 = RemoteEsp32.bytesToInt(buffer + 16);
@@ -218,7 +218,7 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
         RemoteEsp32.intToBytes((int)display.getStringWidth(p3), buffer + 8);
       }
       break;
-    //case OLEDDISPLAY_SET_TEXT_ALIGNMENT: setTextAlignment(p1); break;
+    case OLEDDISPLAY_SET_TEXT_ALIGNMENT: display.setTextAlignment((OLEDDISPLAY_TEXT_ALIGNMENT)p1); break;
     case OLEDDISPLAY_SET_FONT:
       switch (p1) {
         case 10: display.setFont(ArialMT_Plain_10); break;
