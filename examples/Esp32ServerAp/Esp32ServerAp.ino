@@ -58,7 +58,7 @@ void callback(byte* buffer, int command, int p1, int p2, int extsBytes) {
   switch (command) {
 
     default:
-      RemoteEsp32.intToBytes(ERR_UNKNOWN_COMMAND, buffer + 4);
+      RemoteEsp32.intToBytes(RemoteEsp32.ERR_UNKNOWN_COMMAND, buffer + 4);
       break;
 
   }
