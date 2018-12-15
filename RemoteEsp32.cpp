@@ -11,14 +11,10 @@ Interrupt RemoteEsp32Class::touchInterruptList[40];
 RemoteEsp32Class::RemoteEsp32Class()
 {
 	notifyStream = NULL;
-	//buffer = (byte*)malloc(COMMAND_BUFFER_SIZE);
-	//buffer = new byte[COMMAND_BUFFER_SIZE];
 }
 
 RemoteEsp32Class::~RemoteEsp32Class()
 {
-	//free(buffer);
-	//delete [] buffer;
 }
 
 void RemoteEsp32Class::attach(callbackFunction userFunction)
