@@ -105,7 +105,7 @@ void RemoteEsp32Class::processInterrupt()
 			//Serial.println(i);
 
 			if (interruptList[i].attach) {
-				attachInterruptArg(i, (void (*)())isr, &interruptList[i], interruptList[i].mode);
+				attachInterruptArg(i, (void (*)(void*))isr, &interruptList[i], interruptList[i].mode);
 			}
 		}
 	}
@@ -171,7 +171,7 @@ void RemoteEsp32Class::processCommand(byte* buffer, int command, int p1, int p2,
 	case ATTACH_INTERRUPT:
 		interruptList[p1].attach = 1;
 		interruptList[p1].mode = p2;
-		attachInterruptArg(p1, (void (*)())isr, &interruptList[p1], p2);
+		attachInterruptArg(p1, (void (*)(void*))isr, &interruptList[p1], p2);
 		break;
 	case DETACH_INTERRUPT:
 		interruptList[p1].attach = 0;
@@ -413,18 +413,6 @@ void RemoteEsp32Class::processCommand(byte* buffer, int command, int p1, int p2,
 			intToBytes((int)Wire1.write((int)p2), buffer + 8);
 		else
 			intToBytes((int)Wire.write((int)p2), buffer + 8);
-		break;
-	case I2C_DUMP_INTS:
-		if (p1 == 1)
-			Wire1.dumpInts();
-		else
-			Wire.dumpInts();
-		break;
-	case I2C_DUMP_I2C:
-		if (p1 == 1)
-			Wire1.dumpI2C();
-		else
-			Wire.dumpI2C();
 		break;
 	
 	// esp32-hal-ledc.h: 700~

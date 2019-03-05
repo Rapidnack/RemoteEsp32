@@ -99,8 +99,6 @@ class RemoteEsp32Class
 		static const int I2C_WRITE_INT32 = 630;
 		static const int I2C_WRITE_UINT16 = 631;
 		static const int I2C_WRITE_INT16 = 632;
-		static const int I2C_DUMP_INTS = 635;
-		static const int I2C_DUMP_I2C = 636;
 		// esp32-hal-ledc.h: 700~
 		static const int LEDC_SETUP = 700;
 		static const int LEDC_WRITE = 701;
