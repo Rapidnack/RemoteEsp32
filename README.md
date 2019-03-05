@@ -2,6 +2,8 @@
 
 RemoteEsp32プロジェクトは、Arduinoライブラリです。
 
+2019/03/05: Arduino core for the ESP32 1.0.1でコンパイルできるように修正しました。1.0.0ではコンパイルできません。
+
 ArduinoライブラリRemoteEsp32は、別プロジェクト[Esp32IfTest](https://github.com/Rapidnack/Esp32IfTest)のC#ライブラリと組み合わせることで、
 [Arduino core for the ESP32](https://github.com/espressif/arduino-esp32)のほとんどの関数をC#から実行することができます。
 ![Esp32If and RemoteEsp32](http://rapidack.sakura.ne.jp/ttl/wp-content/uploads/2018/12/RemoteEsp32_fig1c.png)
